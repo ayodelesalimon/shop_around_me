@@ -116,7 +116,7 @@ class _PredictionTileState extends State<PredictionTile> {
       print('this is drop of location');
       print(address.placeName);
 
-     Navigator.pop(context, "obtainDirection");
+     Navigator.pop(context);
     }
   }
 }

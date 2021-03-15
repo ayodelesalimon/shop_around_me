@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_around_me/providers/app_data.dart';
 import 'package:shop_around_me/screens/home/home.dart';
+import 'package:shop_around_me/screens/shopping/shopping_list.dart';
 
 
 void main() {
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
 
         routes: {
           Home.id: (context) => Home(),
+          ShoppingList.id: (context) => ShoppingList(),
         },
         debugShowCheckedModeBanner: false,
       ),

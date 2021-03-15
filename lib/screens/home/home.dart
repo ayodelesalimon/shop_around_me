@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import 'package:shop_around_me/providers/app_data.dart';
 import 'package:shop_around_me/screens/search.dart';
+import 'package:shop_around_me/screens/shopping/shopping_list.dart';
 import 'package:shop_around_me/util/http_method.dart';
 import 'package:shop_around_me/widgets/divider.dart';
 import 'package:shop_around_me/widgets/drawer.dart';
@@ -124,7 +125,9 @@ class _HomeState extends State<Home> {
                 right: 0.0,
                 bottom: 0.0,
                 child: Container(
-                  height: 280.0,
+                  height: Provider.of<AppData>(context).searchLocation != null
+                      ? 320
+                      : 280,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
@@ -163,8 +166,8 @@ class _HomeState extends State<Home> {
                               PageRouteBuilder(
                                   pageBuilder: (context, _, __) => SearchMap()),
                             );
-                            
-                            if (res == "obtainDirection") {
+
+                            if (res != null) {
                               await getPlaceDirection();
                             }
                           },
@@ -249,7 +252,13 @@ class _HomeState extends State<Home> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Add work"),
+                                Text(Provider.of<AppData>(context)
+                                            .searchLocation !=
+                                        null
+                                    ? Provider.of<AppData>(context)
+                                        .searchLocation
+                                        .placeName
+                                    : "Store Address"),
                                 SizedBox(
                                   height: 4.0,
                                 ),
@@ -261,7 +270,34 @@ class _HomeState extends State<Home> {
                               ],
                             )
                           ],
-                        )
+                        ),
+                        Provider.of<AppData>(context).searchLocation != null
+                            ? Expanded(
+                                child: Center(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, ShoppingList.id);
+                                    },
+                                    child: Container(
+                                      width:
+                                          MediaQuery.of(context).size.width / 4,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          color: Colors.greenAccent),
+                                      child: Center(
+                                        child: Text(
+                                          "Shop Now",
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 16.0),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : Text("")
                       ],
                     ),
                   ),
@@ -336,4 +372,7 @@ class _HomeState extends State<Home> {
     //       endCap: Cap.roundCap,
     //       geodesic: true);
 
-    //   polylines.add(po
+    //   polylines.add(polyline);
+    // });
+  }
+}

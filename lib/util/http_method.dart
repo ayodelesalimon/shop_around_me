@@ -23,11 +23,11 @@ class AssistMethod {
     if (response != "Failed") {
       // placeAddress = response["results"][3]["formatted_address"];
       st1 = response["results"][0]["address_components"][1]["long_name"];
-      st2 = response["results"][0]["address_components"][3]["long_name"];
-      st3 = response["results"][0]["address_components"][4]["long_name"];
+      st2 = response["results"][0]["address_components"][2]["long_name"];
+   //   st3 = response["results"][0]["address_components"][4]["long_name"];
       // st4 = response["results"][0]["address_components"][5]["long_name"];
 
-      placeAddress = st1 + ", " + st2 + ", " + st3;
+      placeAddress = st1 + ", " + st2 ;
       Address userCurrentAddress = new Address();
 
       userCurrentAddress.longitude = position.longitude;
