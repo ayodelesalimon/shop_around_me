@@ -277,7 +277,7 @@ class _HomeState extends State<Home> {
                                   child: GestureDetector(
                                     onTap: () {
                                       Navigator.pushNamed(
-                                          context, ShoppingList.id);
+                                          context, Shopping.id);
                                     },
                                     child: Container(
                                       width:
